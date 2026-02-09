@@ -1,0 +1,77 @@
+meta:
+  case_id: flapping_right_wing_v0
+  schema_version: "0.1"
+  coordinate_system: "x: chordwise (LE->TE), y: spanwise (root->tip), z: vertical"
+
+units:
+  system: dimensionless
+  reference:
+    c: 1.0
+    U_ref: 1.0
+    rho_ref: 1.0
+  time_normalization:
+    type: period
+    T_ref: 1.0
+
+geometry:
+  - name: right_wing
+    type: primitive
+    primitive:
+      shape: rectangle
+      dimensions:
+        c: 1.0
+        b: 2.5
+        t: 0.02
+    frame:
+      origin: [0.0, 0.0, 0.0]
+      axes:
+        - [1.0, 0.0, 0.0]
+        - [0.0, 1.0, 0.0]
+        - [0.0, 0.0, 1.0]
+
+kinematics:
+  definitions:
+    - name: flap_cosine
+      type: cosine
+      variable: flap
+      axis: [0.0, 1.0, 0.0]
+      about: [0.0, 0.0, 0.0]
+      amplitude: 1.3962634
+      frequency: 1.0
+      phase: 0.0
+    - name: pitch_sine
+      type: sine
+      variable: pitch
+      axis: [0.0, 1.0, 0.0]
+      about: [0.25, 0.0, 0.0]
+      amplitude: 0.34906585
+      frequency: 1.0
+      phase: 1.57079633
+  bindings:
+    - geometry: right_wing
+      motions: [flap_cosine, pitch_sine]
+
+fluid:
+  rho: 1.0
+  nu: 0.001
+  Re: 1000.0
+
+solver:
+  backend: jax
+  lbm:
+    model: D3Q19
+    collision: BGK
+    U_lattice: 0.05
+    tau: 0.515
+  lattice:
+    N_c: 100
+    dx: 0.01
+    dt: 0.0005
+
+simulation:
+  periods: 4
+  steps_per_period: 2000
+  output:
+    format: vtk
+    interval_steps: 50
+    path: outputs/flapping_right_wing
