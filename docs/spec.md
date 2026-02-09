@@ -59,6 +59,20 @@ This file describes the draft schema for a flapping-wing case specification.
 2. `bindings` (list)
    - `geometry` (string): name of geometry
    - `motions` (list): list of kinematic definition names
+3. `qs` (object): QS_model (doc/QS_model.pdf) parameters
+   - `frequency` (float): flapping frequency (Hz)
+   - `phi_m` (float): flapping amplitude (rad)
+   - `phi_0` (float): flapping offset (rad)
+   - `phi_K` (float): flapping waveform shape (0 < K <= 1)
+   - `theta_m` (float): pitch amplitude (rad)
+   - `theta_0` (float): pitch offset (rad)
+   - `theta_C` (float): pitch waveform sharpness
+   - `theta_a` (float): pitch phase offset (rad)
+   - `psi_m` (float): deviation amplitude (rad)
+   - `psi_0` (float): deviation offset (rad)
+   - `psi_N` (float): deviation cycles per flap period (1 or 2)
+   - `psi_a` (float): deviation phase offset (rad)
+   - `beta` (float): stroke plane angle (rad)
 
 `fluid`
 1. `rho` (float)
@@ -84,4 +98,3 @@ This file describes the draft schema for a flapping-wing case specification.
    - `format` (string): `vtk`, `csv`, `hdf5`
    - `interval_steps` (int)
    - `path` (string)
-
