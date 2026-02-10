@@ -81,6 +81,11 @@ solver:
     N_c: 100
     dx: 0.01
     dt: 0.0005
+  domain:
+    bounds:
+      x: [-10.0, 5.0]
+      y: [-1.0, 3.5]
+      z: [-2.0, 2.0]
 
 simulation:
   periods: 4

@@ -90,6 +90,11 @@ This file describes the draft schema for a flapping-wing case specification.
    - `N_c` (int): chord resolution
    - `dx` (float): optional; derived from `c/N_c`
    - `dt` (float): optional
+4. `domain`
+   - `bounds`
+     - `x` (list[2]): [x_min, x_max]
+     - `y` (list[2]): [y_min, y_max]
+     - `z` (list[2]): [z_min, z_max]
 
 `simulation`
 1. `periods` (int)
